@@ -48,7 +48,7 @@ function App() {
   return (
     <div className="App p-6 bg-slate-50 h-full">
       <p className='text-lg'>Dashboard</p>
-      <ColGrid numCols={4} gapX="gap-x-6" gapY="gap-y-6" marginTop='mt-6'>
+      <ColGrid numColsSm={2} numColsLg={4} gapX="gap-x-6" gapY="gap-y-6" marginTop='mt-6'>
         <Col numColSpan={3}>
           <Card>
             <Flex
