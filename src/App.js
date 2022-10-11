@@ -1,4 +1,4 @@
-import { Col, ColGrid, Metric, Text, Card, Block, BarChart, BarList, Bold, Toggle, ToggleItem, LineChart, Flex, AreaChart } from '@tremor/react';
+import { Col, ColGrid, Metric, Text, Card, Block, BarChart, BarList, Bold, Toggle, ToggleItem, LineChart, Flex, AreaChart, ProgressBar, Subtitle, BadgeDelta } from '@tremor/react';
 import './App.css';
 import { useState } from 'react';
 import BarChartData from '../src/dummyJson/BarChartData'
@@ -82,12 +82,53 @@ function App() {
         <Col numColSpan={1}>
           <Block spaceY="space-y-6">
             <Card>
-              <Text>Users</Text>
+              <Flex justifyContent='justify-between'>
+                <Text>Users</Text>
+                <span className='text-gray-400'>Milestone</span>
+              </Flex>
+              <Flex justifyContent='justify-between'>
               <Metric>30,000</Metric>
+              <Subtitle>/ 250,000</Subtitle>
+              </Flex>
+              <ProgressBar percentageValue={(30000/250000)*100} marginTop="mt-6"/>
             </Card>
             <Card>
-              <Text>Growth</Text>
-              <Metric>+17.43%</Metric>
+              <Text>Growth 24h</Text>
+              <Flex justifyContent='justify-start'>
+                <Metric marginTop='mt-6'>+17.43%</Metric>
+                <BadgeDelta deltaType='moderateIncrease'/>
+              </Flex>
+              <Flex marginTop='mt-6'>
+                <Block>
+                  <Text>7d</Text>
+                  <BadgeDelta
+                    text="1.32%"
+                    deltaType='moderateDecrease'
+                    size="xs"
+                    marginTop='mt-6'
+                  />
+                </Block>
+                <Block>
+                  <Text>30d</Text>
+                  <BadgeDelta
+                    text="9.71%"
+                    deltaType='moderateIncrease'
+                    isIncreasePositive={true}
+                    size="xs"
+                    marginTop='mt-6'
+                  />
+                </Block>
+                <Block>
+                  <Text>90d</Text>
+                  <BadgeDelta
+                    text="163.85%"
+                    deltaType='increase'
+                    isIncreasePositive={true}
+                    size="xs"
+                    marginTop='mt-6'
+                  />
+                </Block>
+              </Flex>
             </Card>
           </Block>
         </Col>
