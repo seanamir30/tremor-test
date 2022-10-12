@@ -1,4 +1,4 @@
-import { Col, ColGrid, Metric, Text, Card, Block, BarChart, BarList, Bold, Toggle, ToggleItem, LineChart, Flex, AreaChart, ProgressBar, Subtitle, BadgeDelta } from '@tremor/react';
+import { Col, ColGrid, Metric, Text, Card, Block, BarChart, BarList, Bold, Toggle, ToggleItem, LineChart, Flex, AreaChart, ProgressBar, Subtitle, BadgeDelta, TabList, Tab } from '@tremor/react';
 import './App.css';
 import { useState } from 'react';
 import BarChartData from '../src/dummyJson/BarChartData'
@@ -46,40 +46,36 @@ function App() {
   }
   
   return (
-    <div className="App p-6 bg-slate-50 h-full">
+    <div className="App p-6 bg-slate-50 min-h-screen">
       <p className='text-lg'>Dashboard</p>
-      <ColGrid numColsSm={2} numColsLg={4} gapX="gap-x-6" gapY="gap-y-6" marginTop='mt-6'>
-        <Col numColSpan={3}>
+      <ColGrid numColsSm={1} numColsMd={4} numColsLg={7} gapX="gap-x-6" gapY="gap-y-6" marginTop='mt-6'>
+        <Col numColSpanSm={1} numColSpanMd={5}>
           <Card>
-            <Flex
-              justifyContent="justify-between"
-            >
-              <Toggle defaultValue={activeChart} handleSelect={(value)=> setActiveChart(value)}>
-                <ToggleItem
+              <TabList defaultValue={activeChart} handleSelect={(value)=> setActiveChart(value)}>
+                <Tab
                   value={'Bar Chart'}
                   text="Bar Chart"
                 />
-                <ToggleItem
+                <Tab
                   value={'Line Chart'}
                   text="Line Chart"
                 />
-                <ToggleItem
+                <Tab
                   value={'Area Chart'}
                   text="Area Chart"
                 />
-              </Toggle>
-              <Flex justifyContent='justify-end'>
+              </TabList>
+            {renderChart(activeChart)}
+              <Flex justifyContent='justify-end' marginTop='mt-2'>
                 <span className='mr-4'>vs. last year</span>
                 <Toggle defaultValue={false} handleSelect={(val)=>{handleCompare(val)}}>
                   <ToggleItem value={true} text="On" />
                   <ToggleItem value={false} text="Off" />
                 </Toggle>
               </Flex>
-            </Flex>
-            {renderChart(activeChart)}
           </Card>
         </Col>
-        <Col numColSpan={1}>
+        <Col numColSpanSm={1} numColSpanMd={2}>
           <Block spaceY="space-y-6">
             <Card>
               <Flex justifyContent='justify-between'>
@@ -132,7 +128,7 @@ function App() {
             </Card>
           </Block>
         </Col>
-        <Col numColSpan={2}>
+        <Col nunColSpanSm={2} numColSpanMd={2} numColSpanLg={3}>
           <Card>
             <Bold>Users by Location</Bold>
             <BarList
